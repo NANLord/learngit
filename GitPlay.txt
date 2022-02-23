@@ -1,22 +1,35 @@
-$ cd learngit	//打开learngit版本库
-$ pwd		//显示位置
-$ git status	//
-$ git log	//
-$ git log --pretty=oneline	//
-$ git reset --hard HEAD^	//
-$ cat readme.txt		//
-$ git reset --hard 9c523	//
-$ git reflog			//
-$ git checkout -- readme.txt	//
-$ git reset HEAD readme.txt	//
-$ git rm file2.txt		//
-
 Section One 创建版本库 
+
 $ mkdir learngit
 $ cd learngit
 $ pwd			//显示当前目录
 $ git init		//把这个目录变成Git可以管理的仓库
-------------------------//编写一个txt文件放到了learngit目录下
+-----------------------	//编写一个txt文件放到了learngit目录下
 $ git add readme.txt
 $ git commit -m "wrote a readme file"
+
+
+
+
+Section Two 时光回溯
+
+$ git log
+$ git log --pretty=oneline
+-----------------------	//在Git中，用HEAD表示当前版本，上一个版本就是HEAD^，上上一个版本就是HEAD^^，往上100个版本写成HEAD~100
+$ git reset --hard HEAD^//回退到上一个版本(当已经提交到版本库后)
+-----------------------	//若是回退之后想要反悔，可以通过查询commit id进行回退
+$ git reflog
+$ git reset --hard 9c523//9c523设定为为某一commit ID前几位数
+-----------------------	//查看工作区和版本库里面最新版本的区别
+$ git diff HEAD -- readme.txt
+-----------------------	//撤销修改，经常查看status以及log
+$ git checkout -- readme.txt	//撤销工作区修改
+$ git reset HEAD readme.txt	//撤销暂存区修改，之后再次撤销工作区修改
+$ git reset --hard HEAD^	//撤销版本库修改(回退到上一个版本),若是提交到远程版本库则GG
+-----------------------	//删除文件
+$ rm readme.txt			//与工作区直接删除效果相同，版本库未删除可复原
+$ git checkout -- test.txt	//撤销工作区删除
+$ git rm readme.txt		//从版本库删除文件，并且需要commit it
+$ git reset --hard HEAD^	//回退到上一个版本
+
 
